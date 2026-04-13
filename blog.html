@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Blog - FoodMart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <defs>
+        <symbol id="heart" viewBox="0 0 24 24"><path fill="currentColor" d="M20.16 4.61A6.27 6.27 0 0 0 12 4a6.27 6.27 0 0 0-8.16 9.48l7.45 7.45a1 1 0 0 0 1.42 0l7.45-7.45a6.27 6.27 0 0 0 0-8.87Zm-1.41 7.46L12 18.81l-6.75-6.74a4.28 4.28 0 0 1 3-7.3a4.25 4.25 0 0 1 3 1.25a1 1 0 0 0 1.42 0a4.27 4.27 0 0 1 6 6.05Z"/></symbol>
+        <symbol id="cart" viewBox="0 0 24 24"><path fill="currentColor" d="M8.5 19a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 8.5 19ZM19 16H7a1 1 0 0 1 0-2h8.491a3.013 3.013 0 0 0 2.885-2.176l1.585-5.55A1 1 0 0 0 19 5H6.74a3.007 3.007 0 0 0-2.82-2H3a1 1 0 0 0 0 2h.921a1.005 1.005 0 0 1 .962.725l.155.545v.005l1.641 5.742A3 3 0 0 0 7 18h12a1 1 0 0 0 0-2ZM16.5 19a1.5 1.5 0 1 0 1.5 1.5a1.5 1.5 0 0 0-1.5-1.5Z"/></symbol>
+        <symbol id="search" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></symbol>
+        <symbol id="user" viewBox="0 0 24 24"><path fill="currentColor" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19ZM12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4Z"/></symbol>
+        <symbol id="calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7h16Zm0-9H4V7a1 1 0 0 1 1-1h2v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h2a1 1 0 0 1 1 1Z"/></symbol>
+        <symbol id="arrow-right" viewBox="0 0 24 24"><path fill="currentColor" d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76Z"/></symbol>
+      </defs>
+    </svg>
+
+    <div class="preloader-wrapper"><div class="preloader"></div></div>
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
+      <div class="offcanvas-header justify-content-center">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Your cart</span>
+            <span class="badge bg-primary rounded-pill">3</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div><h6 class="my-0">Growers cider</h6><small class="text-body-secondary">Brief description</small></div>
+              <span class="text-body-secondary">$12</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div><h6 class="my-0">Fresh grapes</h6><small class="text-body-secondary">Brief description</small></div>
+              <span class="text-body-secondary">$8</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div><h6 class="my-0">Heinz tomato ketchup</h6><small class="text-body-secondary">Brief description</small></div>
+              <span class="text-body-secondary">$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span><strong>$25</strong>
+            </li>
+          </ul>
+          <a href="checkout.html" class="w-100 btn btn-primary btn-lg">Continue to checkout</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
+      <div class="offcanvas-header justify-content-center">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3"><span class="text-primary">Search</span></h4>
+          <form role="search" action="shop.html" method="get" class="d-flex mt-3 gap-0">
+            <input class="form-control rounded-start rounded-0 bg-light" type="text" placeholder="What are you looking for?" aria-label="What are you looking for?">
+            <button class="btn btn-dark rounded-end rounded-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="container-fluid">
+        <div class="row py-3 border-bottom">
+          <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+            <div class="main-logo"><a href="index.html"><img src="images/logo.png" alt="logo" class="img-fluid"></a></div>
+          </div>
+          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+            <div class="search-bar row bg-light p-2 my-2 rounded-4">
+              <div class="col-md-4 d-none d-md-block"><select class="form-select border-0 bg-transparent"><option>All Categories</option></select></div>
+              <div class="col-11 col-md-7"><form id="search-form" class="text-center" action="shop.html" method="post"><input type="text" class="form-control border-0 bg-transparent" placeholder="Search for more than 20,000 products" /></form></div>
+              <div class="col-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg></div>
+            </div>
+          </div>
+          <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+              <li><a href="account.html" class="rounded-circle bg-light p-2 mx-1"><svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg></a></li>
+              <li><a href="#" class="rounded-circle bg-light p-2 mx-1"><svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg></a></li>
+              <li class="d-lg-none"><a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart"><svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg></a></li>
+              <li class="d-lg-none"><a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg></a></li>
+            </ul>
+            <div class="cart text-end d-none d-lg-block dropdown">
+              <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart"><span class="fs-6 text-muted dropdown-toggle">Your Cart</span><span class="cart-total fs-5 fw-bold">$1290.00</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row py-3">
+          <div class="d-flex justify-content-center justify-content-sm-between align-items-center">
+            <nav class="main-menu d-flex navbar navbar-expand-lg">
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"><span class="navbar-toggler-icon"></span></button>
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header justify-content-center"><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button></div>
+                <div class="offcanvas-body">
+                  <select class="filter-categories border-0 mb-0 me-5"><option>Shop by Departments</option><option>Groceries</option><option>Drinks</option><option>Chocolates</option></select>
+                  <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                      <ul class="dropdown-menu" aria-labelledby="pages">
+                        <li><a href="about.html" class="dropdown-item">About Us</a></li><li><a href="shop.html" class="dropdown-item">Shop</a></li><li><a href="single-product.html" class="dropdown-item">Single Product</a></li><li><a href="cart.html" class="dropdown-item">Cart</a></li><li><a href="checkout.html" class="dropdown-item">Checkout</a></li><li><a href="blog.html" class="dropdown-item">Blog</a></li><li><a href="single-post.html" class="dropdown-item">Single Post</a></li><li><a href="styles.html" class="dropdown-item">Styles</a></li><li><a href="contact.html" class="dropdown-item">Contact</a></li><li><a href="thankyou.html" class="dropdown-item">Thank You</a></li><li><a href="account.html" class="dropdown-item">My Account</a></li><li><a href="404.html" class="dropdown-item">404 Error</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item active"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container-fluid">
+      <nav class="breadcrumb-nav my-4" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Blog</li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- Blog Section -->
+    <section class="py-5">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Blog Posts -->
+          <div class="col-lg-8">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                  <img src="images/post-thumb-1.jpg" class="card-img-top" alt="Blog Post" style="height:220px;object-fit:cover;">
+                  <div class="card-body p-4">
+                    <div class="d-flex gap-3 text-muted small mb-2">
+                      <span><svg width="14" height="14"><use xlink:href="#calendar"></use></svg> March 15, 2024</span>
+                      <span>5 min read</span>
+                    </div>
+                    <h5 class="fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">10 Tips for Choosing the Freshest Produce</a></h5>
+                    <p class="text-muted">Learn how to pick the freshest fruits and vegetables at the grocery store with these expert tips...</p>
+                    <a href="single-post.html" class="btn btn-outline-dark btn-sm">Read More <svg width="16" height="16"><use xlink:href="#arrow-right"></use></svg></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                  <img src="images/post-thumb-2.jpg" class="card-img-top" alt="Blog Post" style="height:220px;object-fit:cover;">
+                  <div class="card-body p-4">
+                    <div class="d-flex gap-3 text-muted small mb-2">
+                      <span><svg width="14" height="14"><use xlink:href="#calendar"></use></svg> March 10, 2024</span>
+                      <span>7 min read</span>
+                    </div>
+                    <h5 class="fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">The Benefits of Organic Food for Your Family</a></h5>
+                    <p class="text-muted">Discover why switching to organic groceries can make a significant difference in your family's health...</p>
+                    <a href="single-post.html" class="btn btn-outline-dark btn-sm">Read More <svg width="16" height="16"><use xlink:href="#arrow-right"></use></svg></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                  <img src="images/post-thumb-3.jpg" class="card-img-top" alt="Blog Post" style="height:220px;object-fit:cover;">
+                  <div class="card-body p-4">
+                    <div class="d-flex gap-3 text-muted small mb-2">
+                      <span><svg width="14" height="14"><use xlink:href="#calendar"></use></svg> March 5, 2024</span>
+                      <span>4 min read</span>
+                    </div>
+                    <h5 class="fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">Quick and Healthy Meal Prep Ideas</a></h5>
+                    <p class="text-muted">Save time and eat healthier with these simple meal prep strategies that anyone can follow...</p>
+                    <a href="single-post.html" class="btn btn-outline-dark btn-sm">Read More <svg width="16" height="16"><use xlink:href="#arrow-right"></use></svg></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                  <img src="images/banner-image-2.jpg" class="card-img-top" alt="Blog Post" style="height:220px;object-fit:cover;">
+                  <div class="card-body p-4">
+                    <div class="d-flex gap-3 text-muted small mb-2">
+                      <span><svg width="14" height="14"><use xlink:href="#calendar"></use></svg> Feb 28, 2024</span>
+                      <span>6 min read</span>
+                    </div>
+                    <h5 class="fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">Understanding Food Labels: A Complete Guide</a></h5>
+                    <p class="text-muted">Don't be confused by food labels anymore. Here's everything you need to know about nutrition facts...</p>
+                    <a href="single-post.html" class="btn btn-outline-dark btn-sm">Read More <svg width="16" height="16"><use xlink:href="#arrow-right"></use></svg></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                  <img src="images/banner-image-1.jpg" class="card-img-top" alt="Blog Post" style="height:220px;object-fit:cover;">
+                  <div class="card-body p-4">
+                    <div class="d-flex gap-3 text-muted small mb-2">
+                      <span><svg width="14" height="14"><use xlink:href="#calendar"></use></svg> Feb 20, 2024</span>
+                      <span>3 min read</span>
+                    </div>
+                    <h5 class="fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">Seasonal Fruits: What to Buy This Month</a></h5>
+                    <p class="text-muted">Eating seasonally is good for both your wallet and the environment. Find out what's in season...</p>
+                    <a href="single-post.html" class="btn btn-outline-dark btn-sm">Read More <svg width="16" height="16"><use xlink:href="#arrow-right"></use></svg></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                  <img src="images/slide-1.jpg" class="card-img-top" alt="Blog Post" style="height:220px;object-fit:cover;">
+                  <div class="card-body p-4">
+                    <div class="d-flex gap-3 text-muted small mb-2">
+                      <span><svg width="14" height="14"><use xlink:href="#calendar"></use></svg> Feb 15, 2024</span>
+                      <span>8 min read</span>
+                    </div>
+                    <h5 class="fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">How to Store Groceries for Maximum Freshness</a></h5>
+                    <p class="text-muted">Keep your groceries fresh longer with these storage tips and tricks from food preservation experts...</p>
+                    <a href="single-post.html" class="btn btn-outline-dark btn-sm">Read More <svg width="16" height="16"><use xlink:href="#arrow-right"></use></svg></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav class="mt-5" aria-label="Blog pagination">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="col-lg-4 mt-5 mt-lg-0">
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+              <h5 class="fw-bold mb-3">Search</h5>
+              <form class="d-flex gap-0">
+                <input class="form-control rounded-start rounded-0" type="text" placeholder="Search articles...">
+                <button class="btn btn-dark rounded-end rounded-0" type="submit">Search</button>
+              </form>
+            </div>
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+              <h5 class="fw-bold mb-3">Categories</h5>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2"><a href="#" class="nav-link d-flex justify-content-between"><span>Healthy Eating</span><span class="badge bg-light text-dark rounded-pill">12</span></a></li>
+                <li class="mb-2"><a href="#" class="nav-link d-flex justify-content-between"><span>Recipes</span><span class="badge bg-light text-dark rounded-pill">8</span></a></li>
+                <li class="mb-2"><a href="#" class="nav-link d-flex justify-content-between"><span>Tips & Tricks</span><span class="badge bg-light text-dark rounded-pill">15</span></a></li>
+                <li class="mb-2"><a href="#" class="nav-link d-flex justify-content-between"><span>Sustainability</span><span class="badge bg-light text-dark rounded-pill">6</span></a></li>
+                <li class="mb-2"><a href="#" class="nav-link d-flex justify-content-between"><span>News & Updates</span><span class="badge bg-light text-dark rounded-pill">9</span></a></li>
+              </ul>
+            </div>
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+              <h5 class="fw-bold mb-3">Popular Posts</h5>
+              <div class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                <img src="images/post-thumb-1.jpg" alt="" class="rounded-3" width="80" height="60" style="object-fit:cover;">
+                <div>
+                  <h6 class="mb-1 small fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">10 Tips for Choosing Freshest Produce</a></h6>
+                  <span class="text-muted small">March 15, 2024</span>
+                </div>
+              </div>
+              <div class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                <img src="images/post-thumb-2.jpg" alt="" class="rounded-3" width="80" height="60" style="object-fit:cover;">
+                <div>
+                  <h6 class="mb-1 small fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">Benefits of Organic Food</a></h6>
+                  <span class="text-muted small">March 10, 2024</span>
+                </div>
+              </div>
+              <div class="d-flex gap-3">
+                <img src="images/post-thumb-3.jpg" alt="" class="rounded-3" width="80" height="60" style="object-fit:cover;">
+                <div>
+                  <h6 class="mb-1 small fw-bold"><a href="single-post.html" class="text-decoration-none text-dark">Quick Healthy Meal Prep Ideas</a></h6>
+                  <span class="text-muted small">March 5, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+              <h5 class="fw-bold mb-3">Tags</h5>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Organic</a>
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Healthy</a>
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Recipes</a>
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Fresh</a>
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Vegetables</a>
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Fruits</a>
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Cooking</a>
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Nutrition</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-5">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6"><div class="footer-menu"><img src="images/logo.png" alt="logo"></div></div>
+          <div class="col-md-2 col-sm-6"><div class="footer-menu"><h5 class="widget-title">Quick Links</h5><ul class="menu-list list-unstyled"><li class="menu-item"><a href="about.html" class="nav-link">About us</a></li><li class="menu-item"><a href="shop.html" class="nav-link">Shop</a></li><li class="menu-item"><a href="blog.html" class="nav-link">Our Blog</a></li><li class="menu-item"><a href="contact.html" class="nav-link">Contact</a></li></ul></div></div>
+          <div class="col-md-2 col-sm-6"><div class="footer-menu"><h5 class="widget-title">Customer Service</h5><ul class="menu-list list-unstyled"><li class="menu-item"><a href="#" class="nav-link">FAQ</a></li><li class="menu-item"><a href="contact.html" class="nav-link">Contact</a></li><li class="menu-item"><a href="#" class="nav-link">Privacy Policy</a></li></ul></div></div>
+          <div class="col-md-2 col-sm-6"><div class="footer-menu"><h5 class="widget-title">My Account</h5><ul class="menu-list list-unstyled"><li class="menu-item"><a href="account.html" class="nav-link">My Account</a></li><li class="menu-item"><a href="cart.html" class="nav-link">View Cart</a></li></ul></div></div>
+          <div class="col-lg-3 col-md-6 col-sm-6"><div class="footer-menu"><h5 class="widget-title">Subscribe Us</h5><p>Subscribe to our newsletter to get updates about our grand offers.</p><form class="d-flex mt-3 gap-0" role="newsletter"><input class="form-control rounded-start rounded-0 bg-light" type="email" placeholder="Email Address"><button class="btn btn-dark rounded-end rounded-0" type="submit">Subscribe</button></form></div></div>
+        </div>
+      </div>
+    </footer>
+    <div id="footer-bottom"><div class="container-fluid"><div class="row"><div class="col-md-6 copyright"><p>&copy; 2023 Foodmart. All rights reserved.</p></div><div class="col-md-6 credit-link text-start text-md-end"><p>Free HTML Template by <a href="https://templatesjungle.com/">TemplatesJungle</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p></div></div></div></div>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
