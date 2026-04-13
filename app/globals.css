@@ -1,0 +1,4 @@
+/* Next.js specific overrides - main styles loaded from /public/style.css via layout */
+body {
+  min-height: 100vh;
+}
