@@ -720,3 +720,88 @@ h1,h2,h3,h4,h5,h6 {
     height: 740px;
   }
 }
+
+/*--------------------------------------------------------------
+/** 7. OTHER PAGES
+--------------------------------------------------------------*/
+/* 7.1 Breadcrumb */
+.breadcrumb-nav .breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb-nav .breadcrumb-item a {
+  color: #747474;
+  text-decoration: none;
+}
+.breadcrumb-nav .breadcrumb-item.active {
+  color: #222;
+  font-weight: 600;
+}
+
+/* 7.2 Shop page */
+.shop-sidebar .widget h5 {
+  position: relative;
+  padding-bottom: 10px;
+}
+.shop-sidebar .widget h5::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+.page-link {
+  color: #222;
+}
+.page-item.active .page-link {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+/* 7.3 Single product page */
+.product-info .badge {
+  font-size: 0.75rem;
+}
+
+/* 7.4 Cart page */
+.cart .table th {
+  font-weight: 600;
+  color: #222;
+}
+
+/* 7.5 Account page */
+.list-group-item.active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #222;
+}
+
+/* 7.6 Blog page */
+.card-img-top {
+  transition: transform 0.3s ease;
+}
+.card:hover .card-img-top {
+  transform: scale(1.03);
+}
+
+/* 7.7 Contact page */
+.accordion-button:not(.collapsed) {
+  background-color: #FFF9EB;
+  color: #222;
+  box-shadow: none;
+}
+.accordion-button:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 0.25rem rgba(255, 196, 63, 0.25);
+}
+
+/* 7.8 404 page */
+.error-page h1 {
+  font-size: 150px;
+  color: var(--accent-color);
+}
